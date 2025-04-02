@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 function Course({ coursedata }) {
@@ -24,7 +25,7 @@ function Course({ coursedata }) {
           </div>
         )}
 
-        <img
+        <image
           src={coursedata.imageurl}
           className="card-img-top"
           alt={coursedata.coursename}
