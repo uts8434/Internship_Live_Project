@@ -10,7 +10,7 @@ import React from 'react'
 import { useState } from 'react';
 import { internships,feedData,sortedCourses } from './component/data'
 
-function page() {
+function Page() {
   const [activeFeed, setActiveFeed] = useState("all");
   return (
     <>
@@ -127,4 +127,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
