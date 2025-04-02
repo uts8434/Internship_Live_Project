@@ -25,7 +25,7 @@ function Course({ coursedata }) {
           </div>
         )}
 
-        <image
+        <img
           src={coursedata.imageurl}
           className="card-img-top"
           alt={coursedata.coursename}
