@@ -40,7 +40,7 @@ function Course({ coursedata }) {
           {coursedata.advantage?.length > 0 && (
             <ul className="list-unstyled text-start mt-2 mb-4 small text-light-emphasis">
               {coursedata.advantage.map((item, idx) => (
-                <li key={idx} className="mb-1">
+                <li key={idx} className="mb-1 text-white">
                   ✅ {item}
                 </li>
               ))}

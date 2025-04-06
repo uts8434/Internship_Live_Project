@@ -33,7 +33,7 @@ function Page() {
   return (
     <div style={{ marginBottom: "3%" }}>
       <CarouselContent />
-      <div>
+      <div className="d-lg-none d-block">
         <div className="d-flex justify-content-between align-items-center mx-3 my-3">
           <p className="fw-bold m-0">Trending Courses</p>
           <Link href="#" className="text-decoration-none text-white">
@@ -106,7 +106,7 @@ function Page() {
           </button>
         </div>
       </div>
-      <div className="bg-bg-danger ps-3 pe-3 pt-2">
+      <div className=" d-lg-none d-block ps-3 pe-3 pt-2">
         <div className="container-fluid border  rounded ">
           <div className="d-flex justify-content-between align-items-center mx-3 my-3">
             <p className="fw-bold  m-0"> Opportunities</p>
