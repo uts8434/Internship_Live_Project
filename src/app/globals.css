@@ -11,8 +11,13 @@
 }
 .body_bg {
     background: radial-gradient(circle at top left, var(--first_color), var(--second_color));
-    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    /* height: 100vh; */
   }
+  
 .btn_bg{
     background: linear-gradient(to right,var(--btn_primary_color)5%,var(--btn_secondary_color));
 }

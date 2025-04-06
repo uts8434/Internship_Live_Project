@@ -11,7 +11,8 @@ function Course({ coursedata }) {
         style={{ maxWidth: "400px", margin: "auto", position: "relative" }}
       >
         {/* Label Badge */}
-        {coursedata.label && (
+        {(coursedata.label === "Trending" ||
+          coursedata.label === "Bestseller") && (
           <div
             className={`position-absolute top-0 start-0 px-3 py-1 rounded-bottom-end fw-bold d-flex align-items-center gap-2 text-sm ${
               coursedata.label === "Trending"
@@ -20,7 +21,7 @@ function Course({ coursedata }) {
             }`}
             style={{ fontSize: "0.85rem" }}
           >
-            {coursedata.label === "Trending" ? "" : ""} {coursedata.label}
+            {coursedata.label}
           </div>
         )}
 
@@ -34,7 +35,6 @@ function Course({ coursedata }) {
 
         <div className="card-body body_bg px-4 pb-4 pt-3">
           <h5 className="card-title fw-bold ">{coursedata.coursename}</h5>
-
 
           {/* Advantages */}
           {coursedata.advantage?.length > 0 && (
@@ -61,7 +61,7 @@ function Course({ coursedata }) {
             className="btn btn-success w-100 fw-semibold py-2 transition-card"
             style={{ borderRadius: "12px", letterSpacing: "0.5px" }}
           >
-            Enroll Now 
+            Enroll Now
           </a>
         </div>
       </div>
