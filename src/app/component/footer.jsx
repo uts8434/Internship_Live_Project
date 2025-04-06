@@ -1,110 +1,72 @@
 "use client";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebook,
-  faTwitter,
-  faLinkedin,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-
-import Link from "next/link";
+  faHome,
+  faSearch,
+  faBuilding,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
-  const [year, setYear] = useState(new Date().getFullYear());
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
+  const router = useRouter();
+  const [activeButton, setActiveButton] = useState("home");
+
+  const navItems = [
+    {
+      id: "home",
+      label: "Home",
+      icon: faHome,
+      action: () => router.push("/"),
+    },
+    {
+      id: "interns",
+      label: "Interns",
+      icon: faSearch,
+      action: () => router.push("/searchintern"),
+    },
+    {
+      id: "startups",
+      label: "Startups",
+      icon: faBuilding,
+      action: () => alert("Search Startups/Companies Clicked"),
+    },
+    {
+      id: "courses",
+      label: "Courses",
+      icon: faGraduationCap,
+      action: () => alert("Search Courses Clicked"),
+    },
+  ];
+
   return (
-    <footer className="bg-dark text-white pt-4 mt-4 ">
-      <div className="container">
-        <div className="row">
-          {/* About Us Section */}
-          <div className="col-md-4 mb-3">
-            <h5>About Us</h5>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis,
-              laborum!
-            </p>
-          </div>
-
-          {/* Quick Links Section */}
-          <div className="col-md-4 mb-3">
-            <h5>Quick Links</h5>
-            <ul className="list-unstyled">
-              <li>
-                <Link href="/" className="text-white text-decoration-none">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/aboutus"
-                  className="text-white text-decoration-none"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contactus"
-                  className="text-white text-decoration-none"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-white text-decoration-none">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Follow Us Section */}
-          <div className="col-md-4 mb-3">
-            <h5>Follow Us</h5>
-            <div className="d-flex">
-              <Link
-                href="#facebook"
-                className="text-white me-3 social-icon"
-                aria-label="Facebook"
-              >
-                <FontAwesomeIcon icon={faFacebook} size="lg" />
-              </Link>
-              <Link
-                href="#twitter"
-                className="text-white me-3 social-icon"
-                aria-label="Twitter"
-              >
-                <FontAwesomeIcon icon={faTwitter} size="lg" />
-              </Link>
-              <Link
-                href="#linkedin"
-                className="text-white me-3 social-icon"
-                aria-label="LinkedIn"
-              >
-                <FontAwesomeIcon icon={faLinkedin} size="lg" />
-              </Link>
-              <Link
-                href="#instagram"
-                className="text-white social-icon"
-                aria-label="Instagram"
-              >
-                <FontAwesomeIcon icon={faInstagram} size="lg" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright Section */}
-        <div className="text-center py-3">
-          <p className="mb-0">
-            &copy; {year} CareerLaunchPad. All rights reserved.
-          </p>
-        </div>
+    <footer
+      className="position-fixed bottom-0 start-0 end-0 bg-dark text-white d-lg-none"
+      style={{ zIndex: 1000 }}
+    >
+      <div className="d-flex justify-content-around align-items-center py-2">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={`btn d-flex flex-column align-items-center justify-content-center text-white ${
+              activeButton === item.id ? "text-primary" : "text-white-50"
+            }`}
+            style={{
+              flex: 1,
+              background: "transparent",
+              border: "none",
+              fontSize: "0.9rem",
+            }}
+            onClick={() => {
+              setActiveButton(item.id);
+              item.action();
+            }}
+          >
+            <FontAwesomeIcon icon={item.icon} size="lg" />
+            <span className="small mt-1">{item.label}</span>
+          </button>
+        ))}
       </div>
     </footer>
   );

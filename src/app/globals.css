@@ -26,7 +26,7 @@
     transition: all 0.7s ease;
   }
   .transition-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   }
   @keyframes slideUp {
@@ -38,4 +38,33 @@
     }
   }
   
-  
+  /* Base collapsed state */
+.navbar-collapse.mobile-hide {
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Expanded state with animation */
+.navbar-collapse.mobile-show {
+  display: block;
+  max-height: 500px; /* enough for your nav */
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Desktop always visible */
+@media (min-width: 992px) {
+  .navbar-collapse.mobile-hide,
+  .navbar-collapse.mobile-show {
+    max-height: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+}
+
+
+
+

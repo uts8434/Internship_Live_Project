@@ -21,18 +21,13 @@ function Page() {
 
       <div className="container-fluid text-center mt-3">
         <div className="row">
-          <div className="col-md-3 border border-top-0 border-bottom-0">
-            <h4
-              className="py-2 btn_bg text-white rounded "
-              // style={{ backgroundColor: "#0961BA", color: "white" }}
-            >
-              OPPORTUNITY
-            </h4>
+          <div className="col-lg-3 d-none d-lg-block border-lg-start border-lg-end">
+            <h4 className="py-2 btn_bg text-white rounded">OPPORTUNITY</h4>
             <Opportunity activeinternship={internships} />
           </div>
 
-          <div className="col-md-6 border border-top-0 border-bottom-0">
-            <div className="position-relative">
+          <div className="col-md-12 col-lg-6">
+            <div className="position-relative d-none d-lg-block">
               <FontAwesomeIcon
                 icon={faSearch}
                 className="text-secondary position-absolute"
@@ -46,20 +41,13 @@ function Page() {
                 type="search"
                 className="form-control rounded-4 ps-5 border"
                 placeholder="Search"
-                style={{
-                  // outline: "none",
-                  boxShadow: "none",
-                }}
+                style={{ boxShadow: "none" }}
               />
             </div>
 
-            <div className="container-fluid w-75 mt-4 p-0 rounded-4 shadow-sm overflow-hidden border bg-white">
+            <div className="container-fluid w-100 mt-4 p-0 rounded-4 shadow-sm overflow-hidden border bg-white">
               <div className="d-flex w-100 text-center">
-                {[
-                  { id: "all", label: " All Feed" },
-                  { id: "college", label: " Your College Feed" },
-                  { id: "latest", label: " Latest Feed" },
-                ].map((feed) => (
+                {[{ id: "all", label: " All Feed" }, { id: "college", label: " Your College Feed" }, { id: "latest", label: " trending" }].map((feed) => (
                   <div
                     key={feed.id}
                     onClick={() => setActiveFeed(feed.id)}
@@ -80,7 +68,7 @@ function Page() {
               </div>
             </div>
 
-            <div className="mt-4 ">
+            <div className="mt-4">
               {feedData.map((post, index) => (
                 <Feed
                   key={index}
@@ -94,13 +82,8 @@ function Page() {
             </div>
           </div>
 
-          <div className="d-flex flex-column col-md-3 border border-top-0 border-bottom-0">
-            <h4
-              className="py-2 btn_bg text-white rounded"
-              // style={{ backgroundColor: "#0961BA", color: "white" }}
-            >
-              COURSES
-            </h4>
+          <div className="col-lg-3 d-none d-lg-block border-lg-start">
+            <h4 className="py-2 btn_bg text-white rounded">COURSES</h4>
             <div className="d-flex flex-column gap-4">
               {sortedCourses.map((course, index) => (
                 <Course key={index} coursedata={course} />

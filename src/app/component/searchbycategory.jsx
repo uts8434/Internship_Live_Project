@@ -8,7 +8,7 @@ function SearchByCategory() {
   const [activeButton, setActiveButton] = useState(null);
 
   return (
-    <div className="container-fluid  py-3" style={{backgroundColor:"#171717"}} >
+    <div className="container-fluid d-none d-lg-block  py-3" style={{backgroundColor:"#171717"}} >
 
       <div className="d-flex flex-wrap justify-content-center gap-3 py-2 text-center" >
         <button
