@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import "@/app/globals.css";
+
 function SearchIntern() {
   const [filters, setFilters] = useState({});
   const [selectedValue, setSelectedValue] = useState("");
@@ -43,7 +44,7 @@ function SearchIntern() {
     },
     {
       url: "https://media.licdn.com/dms/image/v2/D5603AQERaA-5SXyIYw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1727749661989?e=1748476800&v=beta&t=IbS5jNk2Zdpyt29N3cpTu5qRRavp6HUDfXm8VvssQ4Y",
-      name: "Anil bhatiya",
+      name: "Anil Bhatiya",
       field: "Web Development",
       qualification: "B SC. IT",
       location: "Pan India",
@@ -69,10 +70,7 @@ function SearchIntern() {
 
   const handleApplyFilter = () => {
     if (selectedValue && inputValue.trim()) {
-      setFilters((prev) => ({
-        ...prev,
-        [selectedValue]: inputValue,
-      }));
+      setFilters((prev) => ({ ...prev, [selectedValue]: inputValue }));
       setInputValue("");
     }
   };
@@ -84,92 +82,97 @@ function SearchIntern() {
   };
 
   const handleRemoveFilter = (key) => {
-    setFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters };
-      delete updatedFilters[key];
-      return updatedFilters;
+    setFilters((prev) => {
+      const updated = { ...prev };
+      delete updated[key];
+      return updated;
     });
   };
 
   return (
-    <div className="py-4 body_bg " style={{  marginTop:"7%"}}>
+    <div className="mt-5 body_bg" >
+      {/* Filter Controls */}
       <div
-  className="d-flex flex-column flex-md-row justify-content-evenly align-items-center m-auto w-100 p-3 rounded-3 shadow-sm"
-  style={{ backgroundColor: "#f0f9ff", maxWidth: "800px" }}
->
-  {/* Apply Filter Label and First Select Dropdown */}
-  <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 gap-md-4 mb-3 mb-md-0 w-100">
-    <b className="text-dark text-nowrap">Apply Filter</b>
-    <select
-      className="form-select w-100 w-md-auto"
-      aria-label="Internship filter options"
-      value={selectedValue}
-      onChange={(e) => setSelectedValue(e.target.value)}
-    >
-      <option disabled value="">
-        Select Filter Option
-      </option>
-      {Object.keys(filterOptions).map((option) => (
-        <option key={option} value={option}>
-          {option.charAt(0).toUpperCase() + option.slice(1)}
-        </option>
-      ))}
-    </select>
-  </div>
-
-  {/* Conditional Second Select Dropdown or Input Field */}
-  {selectedValue && (
-    <div className="d-flex justify-content-center align-items-center w-100 mb-3 mb-md-0">
-      {filterOptions[selectedValue].length > 0 ? (
-        <select
-          className="form-select w-100 w-md-auto"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        >
-          <option disabled value="">
-            Select {selectedValue}
-          </option>
-          {filterOptions[selectedValue].map((option) => (
-            <option key={option} value={option}>
-              {option}
+        className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 p-4 bg-white shadow rounded-4 mx-auto"
+        style={{ maxWidth: "850px" }}
+      >
+        {/* Filter Option Selection */}
+        <div className="d-flex flex-column flex-md-row align-items-center gap-2 w-100">
+          <label className="fw-bold text-dark text-nowrap mb-1 mb-md-0">
+            Apply Filter:
+          </label>
+          <select
+            className="form-select flex-grow-1"
+            value={selectedValue}
+            onChange={(e) => setSelectedValue(e.target.value)}
+          >
+            <option disabled value="">
+              Select Filter Option
             </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          type="text"
-          className="form-control w-100 w-md-auto"
-          placeholder={`Enter ${selectedValue}...`}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      )}
-    </div>
-  )}
+            {Object.keys(filterOptions).map((key) => (
+              <option key={key} value={key}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
 
-  {/* Apply and Reset Buttons */}
-  <div className="d-flex gap-3 w-100 w-md-auto justify-content-center">
-    <button className="px-4 rounded-4 btn btn-success" onClick={handleApplyFilter}>
-      Apply
-    </button>
-    <button
-      className="px-4 rounded-4 btn btn-outline-danger"
-      onClick={handleResetFilters}
-    >
-      Reset
-    </button>
-  </div>
-</div>
+        {/* Filter Value Input */}
+        {selectedValue && (
+          <div className="w-100">
+            {filterOptions[selectedValue].length > 0 ? (
+              <select
+                className="form-select"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              >
+                <option disabled value="">
+                  Select {selectedValue}
+                </option>
+                {filterOptions[selectedValue].map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type="text"
+                className="form-control"
+                placeholder={`Enter ${selectedValue}...`}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+            )}
+          </div>
+        )}
 
+        {/* Apply & Reset Buttons */}
+        <div className="d-flex justify-content-center gap-2">
+          <button
+            className="btn btn-success px-4 rounded-3"
+            onClick={handleApplyFilter}
+          >
+            Apply
+          </button>
+          <button
+            className="btn btn-outline-danger px-4 rounded-3"
+            onClick={handleResetFilters}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
 
+      {/* Applied Filters */}
       <div className="mt-3 px-4">
         {Object.keys(filters).length > 0 ? (
           <div
             className="p-3 rounded-3 shadow-sm"
-            style={{ backgroundColor: "#ffede8" }}
+            style={{ backgroundColor: "#ffede8", marginLeft: "20%", marginRight: "20%"}}
           >
             <h5 className="text-danger">Applied Filters:</h5>
-            <div className="d-flex flex-wrap gap-2">
+            <div className="d-flex flex-wrap gap-2" >
               {Object.entries(filters).map(([key, value]) => (
                 <div
                   key={key}
@@ -187,44 +190,54 @@ function SearchIntern() {
             </div>
           </div>
         ) : (
-          <div className="bg-white p-3 rounded-3 shadow-sm " style={{marginLeft:"20%", marginRight:"20%"}}>
+          <div
+            className="bg-white text-black p-3 rounded-3 shadow-sm text-start"
+            style={{ marginLeft: "20%", marginRight: "20%" }}
+          >
             No filters applied
           </div>
         )}
       </div>
 
-      <div className="mt-4  ms-2 me-2 ">
-        <h3 className="text-center pt-4 fw-bold">Student Profiles</h3>
+      {/* Student Cards */}
+      <div className="mt-4 ms-2 me-2">
+        <h3 className="text-center pt-4 fw-bold text-light">
+          Student Profiles
+        </h3>
         <div className="d-flex flex-wrap justify-content-center align-items-center gap-4 pt-2 pb-5">
           {filteredStudents.length > 0 ? (
             filteredStudents.map((student, index) => (
               <div
                 key={index}
-                className="d-flex align-items-center justify-content-between flex-column flex-md-row bg-light rounded px-sm-3 px-lg-5 py-2 shadow-lg"
-                style={{ width: "100%", maxWidth: "800px" }}
+                className="transition-card d-flex align-items-center justify-content-between flex-column flex-md-row rounded-4 px-sm-3 px-lg-5 py-3 shadow-lg"
+                style={{
+                  width: "100%",
+                  maxWidth: "850px",
+                  background: "linear-gradient(to right, #0d1b2a, #1b263b)",
+                  color: "#f1f1f1",
+                  borderLeft: "10px solid #3AA0FA",
+                }}
               >
-                {/* Image and Name Section */}
                 <div className="d-flex justify-content-center align-items-center flex-column text-center mb-3 mb-md-0">
                   <img
                     src={student.url}
                     alt=""
-                    className="rounded-circle border"
+                    className="rounded-circle border border-3"
                     style={{
-                      width: "80px",
-                      height: "80px",
+                      width: "85px",
+                      height: "85px",
                       objectFit: "cover",
+                      borderColor: "#3AA0FA",
                     }}
                   />
-                  <h5 className="fw-bold mb-1">{student.name}</h5>
+                  <h5 className="fw-bold text-light mt-2">{student.name}</h5>
                 </div>
 
-                {/* Details Section */}
-                <div className="text-center text-md-start">
-                  <p className="text-muted small mb-2">{student.field}</p>
+                <div className="text-center text-md-start px-3">
+                  <span className="badge px-3 py-1 mb-2 bg-success text-white">
+                    {student.field}
+                  </span>
                   <ul className="list-unstyled text-start small mb-3">
-                    <li>
-                      <strong>Field:</strong> {student.field}
-                    </li>
                     <li>
                       <strong>Qualification:</strong> {student.qualification}
                     </li>
@@ -238,18 +251,18 @@ function SearchIntern() {
                   </ul>
                 </div>
 
-                {/* Button Section */}
-                <div className="d-flex flex-column align-items-center text-center mt-3 mt-md-0">
-                  <div className="mb-3">
-                    <strong>Open For Opportunity</strong>
+                <div className="d-flex flex-column align-items-center justify-content-center text-center mt-3 mt-md-0">
+                  <div className="mb-2 fw-semibold">
+                    <span className="text-success">Open For Opportunity</span>
                   </div>
                   <button
-                    className={`btn px-5 py-2 ${
+                    className={`btn px-4 py-2 fw-semibold ${
                       student.opportunity === "Yes"
                         ? "btn-success"
                         : "btn-danger"
                     }`}
-                    onClick={() => alert(`Mailed to  ${student.name}`)}
+                    onClick={() => alert(`Mailed to ${student.name}`)}
+                    style={{ borderRadius: "20px" }}
                   >
                     {student.opportunity}
                   </button>
