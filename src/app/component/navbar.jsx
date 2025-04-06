@@ -137,9 +137,17 @@ const Navbar = () => {
               <input
                 type="search"
                 className="form-control rounded-pill ps-5"
-                placeholder="Search"
+                placeholder="Search internship, course etc"
+                list="search-suggestions"
                 style={{ height: "36px" }}
               />
+              <datalist id="search-suggestions">
+                <option value="Web Development" />
+                <option value="AI & ML" />
+                <option value="Data Science" />
+                <option value="Internships" />
+                <option value="Trending Courses" />
+              </datalist>
             </div>
 
             <FontAwesomeIcon
