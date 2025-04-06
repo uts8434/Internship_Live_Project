@@ -54,7 +54,7 @@ function Feed({ profileImage, username, postTime, description, postImage }) {
         />
         <div>
           <b>{username}</b>
-          <p className="text-muted mb-0" style={{ fontSize: "12px" }}>
+          <p className="text-white mb-0" style={{ fontSize: "12px" }}>
             {postTime} • 🌍 Public
           </p>
         </div>

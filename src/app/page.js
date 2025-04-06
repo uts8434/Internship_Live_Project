@@ -10,12 +10,22 @@ import React from "react";
 import { useState } from "react";
 import { internships, feedData, sortedCourses } from "./component/data";
 import "@/app/globals.css";
+import Link from "next/link";
 
 function Page() {
   const [activeFeed, setActiveFeed] = useState("all");
   return (
     <div style={{ marginBottom: "3%" }}>
       <CarouselContent />
+      <div>
+       <div className="d-flex justify-content-between align-self-center mx-3"><p>Trending courses</p><Link href="#">See more</Link></div>
+      <div> {sortedCourses.map((course, index) => (
+                <image href={course.imageurl.src} />
+              ))} </div>
+      </div>
+      <div>
+        search opportunity
+      </div>
 
       <SearchByCategory />
 
@@ -51,7 +61,7 @@ function Page() {
                   <div
                     key={feed.id}
                     onClick={() => setActiveFeed(feed.id)}
-                    className="flex-grow-1 fw-semibold py-3 border-end user-select-none"
+                    className="flex-grow-1 fw-semibold py-2 border-end user-select-none"
                     style={{
                       background:
                         activeFeed === feed.id

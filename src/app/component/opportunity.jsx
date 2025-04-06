@@ -15,7 +15,7 @@ function Opportunity({ activeinternship = [] }) {
   }, {});
 
   return (
-    <div className="my-5 px-3">
+    <div className="my-lg-5 -lg-3">
       {Object.entries(groupedInternships).map(
         ([domain, internships], index) => (
           <div
