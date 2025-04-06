@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile: Toggle + Search + Bell */}
-          <div className="d-flex d-lg-none align-items-center flex-grow-1 gap-5">
+          <div className="d-flex d-lg-none align-items-center flex-grow-1 gap-2">
             <button
               className="btn btn-outline-light border-0 p-2"
               type="button"
