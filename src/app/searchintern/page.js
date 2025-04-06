@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-
+import "@/app/globals.css";
 function SearchIntern() {
   const [filters, setFilters] = useState({});
   const [selectedValue, setSelectedValue] = useState("");
@@ -92,7 +92,7 @@ function SearchIntern() {
   };
 
   return (
-    <div className="py-4" style={{ backgroundColor: "#f5f5f5" }}>
+    <div className="py-4 body_bg " style={{  marginTop:"7%"}}>
       <div
   className="d-flex flex-column flex-md-row justify-content-evenly align-items-center m-auto w-100 p-3 rounded-3 shadow-sm"
   style={{ backgroundColor: "#f0f9ff", maxWidth: "800px" }}
@@ -193,7 +193,7 @@ function SearchIntern() {
         )}
       </div>
 
-      <div className="mt-4  ">
+      <div className="mt-4  ms-2 me-2 ">
         <h3 className="text-center pt-4 fw-bold">Student Profiles</h3>
         <div className="d-flex flex-wrap justify-content-center align-items-center gap-4 pt-2 pb-5">
           {filteredStudents.length > 0 ? (

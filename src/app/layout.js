@@ -22,10 +22,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
      
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} body_bg`} >
       <Navbar/>
-        {children}
-        <Footer/>
+      <main style={{ paddingTop: "80px" }}>{children}</main>
+        {/* <Footer/> */}
       </body>
     </html>
   );

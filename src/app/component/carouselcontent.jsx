@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';  // Add Bootstrap CSS
 
 function CarouselContent() {
   return (
-    <>
+    <div style={{margin:" 2% 1%"}}>
       <style>
         {`
           
@@ -27,7 +27,7 @@ function CarouselContent() {
         `}
       </style>
 
-      <div id="carouselExampleFade" className="carousel carousel-fade slide" data-bs-ride="carousel">
+      <div id="carouselExampleFade" className="carousel carousel-fade slide" data-bs-ride="carousel" >
         <div className="carousel-inner rounded-4">
           <div className="carousel-item active">
             <img
@@ -35,7 +35,7 @@ function CarouselContent() {
               className="d-block w-100"
               alt="Slide 1"
             />
-            <div className="d-md-block d-none carousel-caption">
+            <div className="d-md-block d-none  carousel-caption">
               <h3>Welcome to Our Platform</h3>
               <p>Find the best internships, startups, and courses in one place!</p>
             </div>
@@ -71,7 +71,7 @@ function CarouselContent() {
 
       {/* Include Bootstrap JS */}
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    </>
+    </div>
   );
 }
 

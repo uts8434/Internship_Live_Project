@@ -1,26 +1,49 @@
-"use  client"
+"use client";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsUp,
-  faCommentDots,
+  faThumbsDown,
   faShare,
-  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "@/app/globals.css";
 function Feed({ profileImage, username, postTime, description, postImage }) {
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [upvoted, setUpvoted] = useState(false);
+  const [downvoted, setDownvoted] = useState(false);
+  const [upvotes, setUpvotes] = useState(0);
+  const [downvotes, setDownvotes] = useState(0);
 
-    const handleLike = () => {
-      setLiked(!liked);
-      setLikeCount((prev) => (liked ? prev - 1 : prev + 1));
-    };
+  const handleUpvote = () => {
+    if (upvoted) {
+      setUpvotes((prev) => prev - 1);
+      setUpvoted(false);
+    } else {
+      setUpvotes((prev) => prev + 1);
+      if (downvoted) {
+        setDownvoted(false);
+        setDownvotes((prev) => prev - 1);
+      }
+      setUpvoted(true);
+    }
+  };
+
+  const handleDownvote = () => {
+    if (downvoted) {
+      setDownvotes((prev) => prev - 1);
+      setDownvoted(false);
+    } else {
+      setDownvotes((prev) => prev + 1);
+      if (upvoted) {
+        setUpvoted(false);
+        setUpvotes((prev) => prev - 1);
+      }
+      setDownvoted(true);
+    }
+  };
 
   return (
-    <div className="border mb-3 rounded-3 p-3 bg-white shadow-sm">
-
+    <div className="border mb-3 rounded-3 p-3 body_bg shadow-sm">
       <div className="d-flex align-items-center mb-2">
         <img
           src={profileImage}
@@ -50,23 +73,31 @@ function Feed({ profileImage, username, postTime, description, postImage }) {
       <div className="d-flex justify-content-around p-2 border-top mt-2">
         <div
           className={`d-flex align-items-center gap-2 ${
-            liked ? "text-primary" : "text-secondary"
+            upvoted ? "text-primary" : "text-secondary"
           }`}
-          onClick={handleLike}
           style={{ cursor: "pointer" }}
+          onClick={handleUpvote}
         >
-          <FontAwesomeIcon icon={faThumbsUp} /> 
-          <span>Like</span>
-          <span className="fw-bold">{likeCount}</span>
+          <FontAwesomeIcon icon={faThumbsUp} />
+          <span>Upvote</span>
+          <span className="fw-bold">{upvotes}</span>
         </div>
-        <div className="d-flex align-items-center gap-2 text-secondary">
-          <FontAwesomeIcon icon={faCommentDots} /> <span>Comment</span>
+
+        <div
+          className={`d-flex align-items-center gap-2 ${
+            downvoted ? "text-danger" : "text-secondary"
+          }`}
+          style={{ cursor: "pointer" }}
+          onClick={handleDownvote}
+        >
+          <FontAwesomeIcon icon={faThumbsDown} />
+          <span>Downvote</span>
+          <span className="fw-bold">{downvotes}</span>
         </div>
+
         <div className="d-flex align-items-center gap-2 text-secondary">
-          <FontAwesomeIcon icon={faShare} /> <span>Repost</span>
-        </div>
-        <div className="d-flex align-items-center gap-2 text-secondary">
-          <FontAwesomeIcon icon={faPaperPlane} /> <span>Send</span>
+          <FontAwesomeIcon icon={faShare} />
+          <span>Share</span>
         </div>
       </div>
     </div>

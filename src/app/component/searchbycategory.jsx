@@ -1,17 +1,19 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Use Next.js Router for navigation
+// import "@/app/globals.css";
 
 function SearchByCategory() {
   const router = useRouter();
-  const [activeButton, setActiveButton] = useState("interns");
+  const [activeButton, setActiveButton] = useState(null);
 
   return (
-    <div className="container-fluid bg-light py-3">
-      <div className="d-flex flex-wrap justify-content-center gap-3 py-2 text-center">
+    <div className="container-fluid  py-3" style={{backgroundColor:"#171717"}} >
+
+      <div className="d-flex flex-wrap justify-content-center gap-3 py-2 text-center" >
         <button
-          className={`btn  px-5 py-2 flex-grow-1 flex-md-grow-0 ${
-            activeButton === "interns" ? "bg-primary text-white" : "border border-black text-black"
+          className={`btn text-white px-5 py-2 flex-grow-1 flex-md-grow-0 ${
+            activeButton === "interns" ? "btn_bg text-white" : "border border-white "
           }`}
           onClick={() => {
             setActiveButton("interns");
@@ -22,8 +24,8 @@ function SearchByCategory() {
         </button>
 
         <button
-          className={`btn  px-5 py-2 flex-grow-1 flex-md-grow-0 ${
-            activeButton === "startups" ? "bg-primary text-white" : "border border-black text-black"
+          className={`btn text-white px-5 py-2 flex-grow-1 flex-md-grow-0 ${
+            activeButton === "startups" ? "btn_bg text-white" : "border border-white"
           }`}
           
           onClick={() => {
@@ -35,8 +37,8 @@ function SearchByCategory() {
         </button>
 
         <button
-          className={`btn  px-5 py-2 flex-grow-1 flex-md-grow-0 ${
-            activeButton === "courses" ? "bg-primary text-white" : "border border-black text-black"
+          className={`btn text-white  px-5 py-2 flex-grow-1 flex-md-grow-0 ${
+            activeButton === "courses" ? "btn_bg text-white" : "border border-white"
           }`}
     
           onClick={() => {

@@ -1,0 +1,28 @@
+:root{
+    --first_color:#030303;
+    --second_color:#164873;
+    --btn_primary_color:#053765;
+    --btn_secondary_color:#3AA0FA;
+
+}
+
+.gradient-bg {
+    background: linear-gradient(35deg, var(--first_color), var(--second_color));
+}
+.body_bg {
+    background: radial-gradient(circle at top left, var(--first_color), var(--second_color));
+    
+  }
+.btn_bg{
+    background: linear-gradient(to right,var(--btn_primary_color)5%,var(--btn_secondary_color));
+}
+
+.transition-card {
+    transition: all 0.7s ease;
+  }
+  .transition-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  
