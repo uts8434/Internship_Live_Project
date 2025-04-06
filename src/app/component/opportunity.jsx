@@ -23,7 +23,7 @@ function Opportunity({ activeinternship = [] }) {
             className="mb-4 rounded-2  shadow-sm overflow-hidden border"
             style={{ backgroundColor: "#ffffff" }}
           >
-            <div className="d-flex align-items-center justify-content-center gap-2 px-3 py-2 fw-semibold gradient-bg text-white ">
+            <div className="d-flex  align-items-center justify-content-center gap-2 px-3 py-2 fw-semibold gradient-bg text-white ">
               {domain}
             </div>
 

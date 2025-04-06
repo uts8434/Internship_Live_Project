@@ -36,7 +36,7 @@ function Page() {
       <div className="d-lg-none d-block">
         <div className="d-flex justify-content-between align-items-center mx-3 my-3">
           <p className="fw-bold m-0">Trending Courses</p>
-          <Link href="#" className="text-decoration-none text-white">
+          <Link href="/courses" className="text-decoration-none text-white">
             See more
           </Link>
         </div>
@@ -110,7 +110,7 @@ function Page() {
         <div className="container-fluid border  rounded ">
           <div className="d-flex justify-content-between align-items-center mx-3 my-3">
             <p className="fw-bold  m-0"> Opportunities</p>
-            <Link href="#" className="text-decoration-none">
+            <Link href="/opportunity" className="text-decoration-none">
               <span className="text-primary fw-semibold text-white  ">
                 See more
               </span>
