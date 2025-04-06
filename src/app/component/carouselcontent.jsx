@@ -21,7 +21,7 @@ function CarouselContent() {
 
           @media (max-width: 768px) {
             .carousel-item img {
-              height: 300px;
+              height: 200px;
             }
           }
         `}
