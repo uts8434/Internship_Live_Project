@@ -31,26 +31,32 @@ function Page() {
   };
   const [activeFeed, setActiveFeed] = useState("all");
   return (
-    <div style={{ marginBottom: "3%" }}>
+    <div>
       <CarouselContent />
       <div className="d-lg-none d-block">
-        <div className="d-flex justify-content-between align-items-center mx-3 my-3">
-          <p className="fw-bold m-0">Trending Courses</p>
-          <Link href="/courses" className="text-decoration-none text-white">
-            See more
+        <div className="d-flex justify-content-between align-items-center px-3 pt-3">
+          <h6 className="fw-bold mb-0 text-white">Trending Courses</h6>
+          <Link
+            href="/courses"
+            className="text-decoration-none text-primary fw-semibold"
+          >
+           <span className="text-primary fw-semibold underline-on-hover">See more</span>
           </Link>
         </div>
 
-        <div className="position-relative px-3">
+        <div className="position-relative px-3 pt-2">
+          {/* Left Scroll Button */}
           <button
             type="button"
             onClick={() => scroll("left")}
-            className="position-absolute top-50 translate-middle-y start-0 border-0 bg-white shadow-sm rounded-circle p-2"
+            className="position-absolute top-50 start-0 translate-middle-y border-0 bg-white shadow rounded-circle p-2"
             style={{ zIndex: 2 }}
+            aria-label="Scroll left"
           >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
+          {/* Scrollable Course List */}
           <div
             className="d-flex flex-nowrap gap-3 px-4"
             ref={scrollRef}
@@ -65,7 +71,6 @@ function Page() {
               e.preventDefault();
             }}
           >
-            {/* Hide scrollbar in WebKit */}
             <style jsx>{`
               div::-webkit-scrollbar {
                 display: none;
@@ -73,7 +78,7 @@ function Page() {
             `}</style>
 
             {sortedCourses.map((course, index) => (
-              <div key={index}>
+              <div key={index} className="flex-shrink-0">
                 <img
                   src={course.imageurl}
                   alt={`Course ${index + 1}`}
@@ -83,7 +88,7 @@ function Page() {
                     height: "100px",
                     objectFit: "cover",
                     cursor: "pointer",
-                    transition: "transform 0.5s ease",
+                    transition: "transform 0.3s ease",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.transform = "scale(1.05)")
@@ -96,46 +101,49 @@ function Page() {
             ))}
           </div>
 
+          {/* Right Scroll Button */}
           <button
             type="button"
             onClick={() => scroll("right")}
-            className="position-absolute top-50 translate-middle-y end-0 border-0 bg-white shadow-sm rounded-circle p-2"
+            className="position-absolute top-50 end-0 translate-middle-y border-0 bg-white shadow rounded-circle p-2"
             style={{ zIndex: 2 }}
+            aria-label="Scroll right"
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
       </div>
-      <div className=" d-lg-none d-block ps-3 pe-3 pt-2">
-        <div className="container-fluid border  rounded ">
-          <div className="d-flex justify-content-between align-items-center mx-3 my-3">
-            <p className="fw-bold  m-0"> Opportunities</p>
+
+      <div className="d-lg-none d-block px-3 pt-3">
+        <div className="container-fluid border rounded  shadow-sm">
+          <div className="d-flex justify-content-between align-items-center px-2 py-2">
+            <h6 className="fw-bold text-white mb-0">Opportunities</h6>
             <Link href="/opportunity" className="text-decoration-none">
-              <span className="text-primary fw-semibold text-white  ">
-                See more
-              </span>
+              <span className="text-primary fw-semibold underline-on-hover">See more</span>
             </Link>
           </div>
-          <hr />
+          <hr className="border-light my-1" />
           {internships.length > 0 ? (
-            <div className="">
+            <div className="px-2 pb-2">
               {internships.slice(0, 5).map((internship, index) => (
                 <div
                   key={index}
-                  className="mb-2  d-flex align-middle justify-content-between mx-4"
+                  className="d-flex justify-content-between align-items-center mb-2"
                 >
-                  <p className="text-white mb-1">{internship.name}</p>
+                  <p className="text-white mb-0 small">{internship.name}</p>
                   <Link
                     href={internship.ApplyLink}
-                    className="text-white text-decoration-none hover:text-primary"
+                    className=" text-decoration-none small text-primary underline-on-hover"
                   >
-                    View more
+                    <span className="underline-on-hover">View more</span>
                   </Link>
                 </div>
               ))}
             </div>
           ) : (
-            <>No recruitment yet</>
+            <p className="text-muted text-center small mb-2">
+              No recruitment yet
+            </p>
           )}
         </div>
       </div>

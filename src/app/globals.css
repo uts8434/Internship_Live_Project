@@ -65,9 +65,10 @@
   }
 }
 
-.hover-text-primary:hover {
-  color: #0d6efd !important; 
+.underline-on-hover:hover {
+  text-decoration: underline;
 }
+
 
 
 

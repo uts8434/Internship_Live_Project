@@ -36,7 +36,7 @@ function Footer() {
       id: "courses",
       label: "Courses",
       icon: faGraduationCap,
-      action: () => alert("Search Courses Clicked"),
+      action: () => router.push("/courses"),
     },
   ];
 
