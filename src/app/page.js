@@ -40,7 +40,9 @@ function Page() {
             href="/courses"
             className="text-decoration-none text-primary fw-semibold"
           >
-           <span className="text-primary fw-semibold underline-on-hover">See more</span>
+            <span className="text-primary fw-semibold underline-on-hover">
+              See more
+            </span>
           </Link>
         </div>
 
@@ -119,7 +121,9 @@ function Page() {
           <div className="d-flex justify-content-between align-items-center px-2 py-2">
             <h6 className="fw-bold text-white mb-0">Opportunities</h6>
             <Link href="/opportunity" className="text-decoration-none">
-              <span className="text-primary fw-semibold underline-on-hover">See more</span>
+              <span className="text-primary fw-semibold underline-on-hover">
+                See more
+              </span>
             </Link>
           </div>
           <hr className="border-light my-1" />
@@ -172,8 +176,17 @@ function Page() {
                 type="search"
                 className="form-control rounded-4 ps-5 border"
                 placeholder="Search"
+                list="search-suggestions"
                 style={{ boxShadow: "none" }}
               />
+
+              <datalist id="search-suggestions">
+                <option value="Web Development" />
+                <option value="AI & ML" />
+                <option value="Data Science" />
+                <option value="Internships" />
+                <option value="Trending Courses" />
+              </datalist>
             </div>
 
             <div className="container-fluid w-100 mt-4 p-0 rounded-4 shadow-sm overflow-hidden border bg-white">

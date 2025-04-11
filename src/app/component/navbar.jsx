@@ -9,25 +9,36 @@ import {
   faBell,
   faComments,
   faSearch,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "@/app/globals.css";
+import Image from "next/image";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [searchbar, setSearchBar] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const [startY, setStartY] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
-
-  const toggleNavbar = () => setIsOpen(!isOpen);
-  const closeNavbar = () => setIsOpen(false);
 
   useEffect(() => {
     setHasMounted(true);
     const isSmallScreen = window.innerWidth < 768;
     if (isSmallScreen) setShowPopup(true);
   }, []);
+
+  const navItems = [
+    { href: "/", icon: faHome, label: "Home" },
+    { href: "/network", icon: faUser, label: "Network" },
+    { href: "/messaging", icon: faComments, label: "Messaging" },
+    { href: "/notification", icon: faBell, label: "Notifications" },
+    { href: "#", icon: faUser, label: "Profile",children: [
+      { href: "#profile", label: "View Profile" },
+      { href: "#Applied_Form", label: "Applied Form" },
+    ], },
+  ];
 
   // Swipe logic
   const handleTouchStart = (e) => setStartY(e.touches[0].clientY);
@@ -56,9 +67,15 @@ const Navbar = () => {
     setIsDragging(false);
   };
 
+  const showSearchBar = () => {
+    setSearchBar((prev) => !prev);
+  };
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+  }, []);
+
   return (
     <>
-      {/* 🔐 Swipeable Login/Signup Popup */}
       {hasMounted && showPopup && (
         <div
           className="position-fixed bottom-0 start-0 end-0 shadow-lg rounded-top-4"
@@ -94,89 +111,22 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* 🧭 Navbar */}
-      <nav
-        className="navbar navbar-expand-lg navbar-dark gradient-bg"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: "0.7em 1em",
-          boxShadow: "1px 1px 2px white",
-          zIndex: 1000,
-        }}
-      >
-        {/* Wrapper for all navbar content */}
-        <div className="container-fluid d-flex align-items-center justify-content-between w-100 gap-3">
-          {/* Brand (only visible on large) */}
+      {/*  Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark gradient-bg border-bottom Shadow ">
+        {/*for web view  */}
+        <div className="container-fluid d-lg-flex d-none align-items-center justify-content-between w-100 gap-3">
+        
           <div className="d-none d-lg-block fw-bold text-white fs-5">
             CareerLaunchPad
           </div>
 
-          {/* Mobile: Toggle + Search + Bell */}
-          <div className="d-flex d-lg-none align-items-center flex-grow-1 gap-2">
-            <button
-              className="btn btn-outline-light border-0 p-2"
-              type="button"
-              onClick={toggleNavbar}
-            >
-              <FontAwesomeIcon icon={faBars} />
-            </button>
-
-            <div className="flex-grow-1 position-relative">
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="text-secondary position-absolute"
-                style={{
-                  left: "15px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              />
-              <input
-                type="search"
-                className="form-control rounded-pill ps-5"
-                placeholder="Search internship, course etc"
-                list="search-suggestions"
-                style={{ height: "36px" }}
-              />
-              <datalist id="search-suggestions">
-                <option value="Web Development" />
-                <option value="AI & ML" />
-                <option value="Data Science" />
-                <option value="Internships" />
-                <option value="Trending Courses" />
-              </datalist>
-            </div>
-
-            <FontAwesomeIcon
-              icon={faBell}
-              size="lg"
-              className="text-white"
-              style={{ cursor: "pointer" }}
-            />
-          </div>
-
-          {/* Navbar Links (collapsed in mobile) */}
-          <div
-            className={`navbar-collapse d-lg-flex ${
-              isOpen ? "mobile-show" : "mobile-hide"
-            }`}
-          >
+          <div className={` d-lg-flex  d-none `}>
             <ul className="navbar-nav text-start ms-auto d-flex align-items-center gap-3">
-              {[
-                { href: "/", icon: faHome, label: "Home" },
-                { href: "/network", icon: faUser, label: "Network" },
-                { href: "/messaging", icon: faComments, label: "Messaging" },
-                { href: "/notification", icon: faBell, label: "Notifications" },
-                { href: "#", icon: faUser, label: "Profile" },
-              ].map(({ href, icon, label }) => (
+              {navItems.map(({ href, icon, label }) => (
                 <li className="nav-item" key={label}>
                   <Link
                     className="nav-link d-flex flex-lg-column align-items-center"
                     href={href}
-                    onClick={closeNavbar}
                   >
                     <FontAwesomeIcon
                       icon={icon}
@@ -186,10 +136,149 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
+
+              {/* <li className="nav-item dropdown position-static">
+                <a
+                  className="nav-link dropdown-toggle d-flex flex-lg-column align-items-center"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="mb-lg-1 me-lg-0 me-2"
+                  />
+                  <span>Profile</span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end mt-2 p-2 shadow rounded-3">
+                  <li>
+                    <Link className="dropdown-item" href="/profile">
+                      View Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/applications">
+                      Applied Form
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/report">
+                      Report Fraud
+                    </Link>
+                  </li>
+                </ul>
+              </li> */}
             </ul>
           </div>
         </div>
+
+        {/* Mobile: view + Search + Bell */}
+        <div className="d-lg-none d-flex container-fluid align-items-center justify-content-between w-100 gap-3">
+          <div className="w-100 d-flex justify-content-between align-items-center">
+            <div className="d-flex gap-3 align-items-center">
+              <button
+                className="btn btn-outline-light border-0 p-2"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#myOffcanvas"
+                type="button"
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </button>
+              <a href="/">
+                <img
+                  src="/LookIntern_Logo.png"
+                  width="50"
+                  alt="Brand Logo"
+                  className="rounded-5 object-fit-cover"
+                />
+              </a>
+            </div>
+
+            <div className="d-flex gap-4 align-items-center">
+              <FontAwesomeIcon
+                icon={faSearch}
+                onClick={showSearchBar}
+                style={{ cursor: "pointer" }}
+              />
+              <FontAwesomeIcon
+                icon={faBell}
+                size="lg"
+                className="text-white"
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="offcanvas offcanvas-start text-bg-dark"
+            tabIndex="-1"
+            id="myOffcanvas"
+            aria-labelledby="offcanvasLabel"
+          >
+            <div className="offcanvas-header">
+              <h5 className="offcanvas-title" id="offcanvasLabel">
+                Look Intern
+              </h5>
+              <button
+                type="button"
+                className="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="offcanvas-body gradient-bg">
+              <ul className="nav flex-column gap-3 ">
+                {navItems.map(({ href, icon, label }) => (
+                  <li className="nav-item" key={label}>
+                    <Link
+                      className="nav-link d-flex align-items-center gap-2 text-white"
+                      href={href}
+                      onClick={() => {
+                        
+                        const closeBtn = document.querySelector('[data-bs-dismiss="offcanvas"]');
+                        closeBtn?.click(); 
+                      }}
+                    >
+                      <FontAwesomeIcon icon={icon} />
+                      <span>{label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </nav>
+      <div className="d-flex justify-content-center align-items-center pt-2 w-100">
+        {searchbar && (
+          <>
+            <div className="d-flex d-lg-none justify-content-center align-items-center w-100 bg-light  rounded-pill pe-2 ps-4   mx-3">
+              <input
+                type="search"
+                className="d-lg-none d-flex  text-start  py-1 border-0   w-100"
+                style={{ outline: "none" }}
+                placeholder="Search internship, course etc"
+                list="search-suggestions"
+              />
+
+              <div className="text-center ms-1 mt-1">
+                <FontAwesomeIcon
+                  className="gradient-bg p-2 rounded-circle"
+                  icon={faPaperPlane}
+                />
+              </div>
+            </div>
+            <datalist id="search-suggestions">
+              <option value="Web Development" />
+              <option value="AI & ML" />
+              <option value="Data Science" />
+              <option value="Internships" />
+              <option value="Trending Courses" />
+            </datalist>
+          </>
+        )}
+      </div>
     </>
   );
 };

@@ -1,7 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
+ 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,12 +21,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+ 
   return (
     <html lang="en">
      
       <body className={`${geistSans.variable} ${geistMono.variable} body_bg `} >
       <Navbar/>
-      <main className="body_bg"  style={{ paddingTop: "80px",marginBottom:"18%" }}>{children}</main>
+      <main className="body_bg"  style={{ marginBottom:"18%" }}>{children}</main>
         <Footer/>
       </body>
     </html>

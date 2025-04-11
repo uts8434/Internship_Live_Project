@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';  // Add Bootstrap CSS
 
 function CarouselContent() {
   return (
-    <div style={{margin:" 2% 1%"}}>
+    <div style={{margin:" 1% 1%"}}>
       <style>
         {`
           

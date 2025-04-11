@@ -9,6 +9,10 @@
 .gradient-bg {
     background: linear-gradient(35deg, var(--first_color), var(--second_color));
 }
+
+
+
+
 .body_bg {
     background: radial-gradient(circle at top left, var(--first_color), var(--second_color));
     background-repeat: no-repeat;
@@ -38,32 +42,11 @@
     }
   }
   
-  /* Base collapsed state */
-.navbar-collapse.mobile-hide {
-  display: block;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: all 0.4s ease-in-out;
+.Shadow{
+  box-shadow: 0px 1px 6px  #dadada;
 }
 
-/* Expanded state with animation */
-.navbar-collapse.mobile-show {
-  display: block;
-  max-height: 500px; /* enough for your nav */
-  opacity: 1;
-  transition: all 0.4s ease-in-out;
-}
 
-/* Desktop always visible */
-@media (min-width: 992px) {
-  .navbar-collapse.mobile-hide,
-  .navbar-collapse.mobile-show {
-    max-height: none !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-  }
-}
 
 .underline-on-hover:hover {
   text-decoration: underline;

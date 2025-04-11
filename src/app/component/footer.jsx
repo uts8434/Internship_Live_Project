@@ -42,10 +42,10 @@ function Footer() {
 
   return (
     <footer
-      className="position-fixed bottom-0 start-0 end-0 bg-dark text-white d-lg-none"
+      className=" container-fluid  position-fixed bottom-0 start-0 end-0 bg-dark text-white d-lg-none"
       style={{ zIndex: 1000 }}
     >
-      <div className="d-flex justify-content-around align-items-center py-2">
+      <div className="container-fluid d-flex justify-content-around align-items-center py-2">
         {navItems.map((item) => (
           <button
             key={item.id}
