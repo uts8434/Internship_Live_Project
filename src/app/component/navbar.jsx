@@ -31,7 +31,7 @@ const Navbar = () => {
 
   const navItems = [
     { href: "/", icon: faHome, label: "Home" },
-    { href: "/network", icon: faUser, label: "Network" },
+    { href: "/network", icon: faUser, label: "About" },
     { href: "/messaging", icon: faComments, label: "Messaging" },
     { href: "/notification", icon: faBell, label: "Notifications" },
     { href: "#", icon: faUser, label: "Profile",children: [
@@ -266,6 +266,7 @@ const Navbar = () => {
                 <FontAwesomeIcon
                   className="gradient-bg p-2 rounded-circle"
                   icon={faPaperPlane}
+                  onClick={()=>alert("sent")}
                 />
               </div>
             </div>
