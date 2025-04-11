@@ -31,7 +31,7 @@ const Navbar = () => {
 
   const navItems = [
     { href: "/", icon: faHome, label: "Home" },
-    { href: "/network", icon: faUser, label: "About" },
+    { href: "/network", icon: faUser, label: "Network" },
     { href: "/messaging", icon: faComments, label: "Messaging" },
     { href: "/notification", icon: faBell, label: "Notifications" },
     { href: "#", icon: faUser, label: "Profile",children: [
